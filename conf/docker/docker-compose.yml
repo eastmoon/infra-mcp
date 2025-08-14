@@ -1,0 +1,31 @@
+# Docker-Compose document
+# Ref : https://docs.docker.com/compose/compose-file/
+
+services:
+  mcp-server:
+    build:
+      context: mcp
+    container_name: docker-mcp_${PROJECT_NAME}
+    restart: always
+    ports:
+      - 8000:80
+    networks:
+      - modelcontextprotocol-net
+    volumes:
+      - ${MCP_SOURCE_VOLUME}:/app
+    working_dir: /app
+
+  inspector:
+    build:
+      context: inspector
+    container_name: docker-inspector_${PROJECT_NAME}
+    restart: always
+    ports:
+      - 6274:6274
+      - 6277:6277
+    networks:
+      - modelcontextprotocol-net
+
+networks:
+  modelcontextprotocol-net:
+    driver: bridge
