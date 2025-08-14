@@ -2,4 +2,8 @@
 set -e
 
 ## Startup container
-tail -f /dev/null
+if [ -z "${1}" ]; then
+    python main.py
+fi
+
+exec "$@"

@@ -15,7 +15,7 @@ goto end
     echo PROJECT_NAME=%PROJECT_NAME% > %CONF_FILE_PATH%
 
     @rem Setting shell directory
-    echo MCP_SOURCE_VOLUME=%CLI_DIRECTORY%src >> %CONF_FILE_PATH%
+    echo SOURCE_DIR=%CLI_DIRECTORY%src >> %CONF_FILE_PATH%
 
     goto end
 )
