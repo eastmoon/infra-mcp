@@ -31,6 +31,7 @@ goto end
     echo System startup, wait 10 second ...
     timeout /t 10
     for /f "tokens=*" %%p in ('docker exec -ti docker-inspector_infra-mcp cat /var/local/mcp.inspector.token') do ( set INSPECTOR_TOKEN=%%p )
+    echo Open browser with http://localhost:6274?MCP_PROXY_AUTH_TOKEN=%INSPECTOR_TOKEN%
     start "" http://localhost:6274?MCP_PROXY_AUTH_TOKEN=%INSPECTOR_TOKEN%
     goto end
 
