@@ -10,7 +10,8 @@ if [ "${1#-}" != "${1}" ] || [ -z "$(command -v "${1}")" ] || { [ -f "${1}" ] &&
 fi
 
 if [ "${1}" = "node" ]; then
-    HOST=0.0.0.0 npx @modelcontextprotocol/inspector
+    openssl rand -hex 32 > /var/local/mcp.inspector.token
+    MCP_PROXY_AUTH_TOKEN=$(cat /var/local/mcp.inspector.token) HOST=0.0.0.0 npx @modelcontextprotocol/inspector --transport http --server-url http://mcp-server/mcp
 fi
 
 exec "$@"

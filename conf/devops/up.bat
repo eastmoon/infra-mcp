@@ -27,6 +27,11 @@ goto end
 
     @rem Run next deveopment with stdout
     docker-compose -f .\conf\docker\docker-compose.yml --env-file %CONF_FILE_PATH% up -d --build
+
+    echo System startup, wait 10 second ...
+    timeout /t 10
+    for /f "tokens=*" %%p in ('docker exec -ti docker-inspector_infra-mcp cat /var/local/mcp.inspector.token') do ( set INSPECTOR_TOKEN=%%p )
+    start "" http://localhost:6274?MCP_PROXY_AUTH_TOKEN=%INSPECTOR_TOKEN%
     goto end
 
 :args
