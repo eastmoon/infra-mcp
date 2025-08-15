@@ -106,7 +106,7 @@ python ./[client-name].py
     - [Client](https://modelcontextprotocol.io/docs/learn/client-concepts)
 + [Model Context Protocol - Github](https://github.com/modelcontextprotocol)
     - [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
-        + [FastMCP](https://github.com/jlowin/fastmcp)
+        + [FastMCP](https://github.com/jlowin/fastmcp)、[Document](https://gofastmcp.com/getting-started/welcome)
     - [Inspector](https://github.com/modelcontextprotocol/inspector)
 + 文獻
     - [How To Build RAG Applications Using Model Context Protocol](https://thenewstack.io/how-to-build-rag-applications-using-model-context-protocol/)
