@@ -18,6 +18,8 @@ MCP consists of two layers:
 + Data layer: Defines the JSON-RPC 2.0 based protocol for client-server communication, including lifecycle management, and core primitives, such as tools, resources, prompts and notifications.
 + Transport layer: Defines the communication mechanisms and channels that enable data exchange between clients and servers, including transport-specific connection establishment, message framing, and authorization.
     - MCP supports two transport mechanisms: Stdio transport、Streamable HTTP transport
+    - 在 [Base Protocol - Transports](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports) 中提到可設定為 [Server-Sent Events (SSE)](https://en.wikipedia.org/wiki/Server-sent_events) 來傳送複數訊息。
+        + [SSE](https://blackbing.medium.com/%E6%B7%BA%E8%AB%87-server-sent-events-9c81ef21ca8e) 是一個單向通訊的技術，其設計之初是在 WebSocket 未完成前，需提供長連線來高速傳遞內容之用；但在瀏覽器已經能提供 Socket 與 Fetch 運用的現況，SSE 技術並非最優解。
 
 ## Server
 
