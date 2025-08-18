@@ -2,22 +2,23 @@
 
 ## Participants
 
-MCP follows a client-server architecture where an MCP host — an AI application like Claude Code or Claude Desktop — establishes connections to one or more MCP servers. The MCP host accomplishes this by creating one MCP client for each MCP server. Each MCP client maintains a dedicated one-to-one connection with its corresponding MCP server.
-The key participants in the MCP architecture are:
+MCP 是根據 Client-Server 架構，其中 MCP 主機 ( MCP Host )，會經由 MCP 用戶端 ( MCP Client ) 對 MCP 伺服器 ( MCP Server ) 建立連線，且每個 MCP 用戶端與其對應的 MCP 伺服器保持一對一的專用連線。
 
-+ MCP Host: The AI application that coordinates and manages one or multiple MCP clients
-+ MCP Client: A component that maintains a connection to an MCP server and obtains context from an MCP server for the MCP host to use
-+ MCP Server: A program that provides context to MCP clients
+MCP 架構中的關鍵參與者：
 
-For example: Visual Studio Code acts as an MCP host. When Visual Studio Code establishes a connection to an MCP server, such as the Sentry MCP server, the Visual Studio Code runtime instantiates an MCP client object that maintains the connection to the Sentry MCP server.
++ MCP Host: 負責協調與管理複數 MCP 用戶端的 AI 應用程式
++ MCP Client: 維護 MCP 伺服器的連線，並從伺服器取得內容以供 MCP 主機使用的元件
++ MCP Server: 為 MCP 用戶端提供內容的伺服器
+
+舉例來說，若 Visual Studio Code 充當 MCP 主機。當 Visual Studio Code 與 MCP 伺服器建立連線時，Visual Studio Code 運行時會建立一個 MCP 用戶端物件，用於維護與 MCP 伺服器的連線。
 
 ## Layers
 
-MCP consists of two layers:
+MCP 由兩個層所組成：
 
-+ Data layer: Defines the JSON-RPC 2.0 based protocol for client-server communication, including lifecycle management, and core primitives, such as tools, resources, prompts and notifications.
-+ Transport layer: Defines the communication mechanisms and channels that enable data exchange between clients and servers, including transport-specific connection establishment, message framing, and authorization.
-    - MCP supports two transport mechanisms: Stdio transport、Streamable HTTP transport
++ Data layer: 定義基於 JSON-RPC 2.0 的 Client-Server 通訊協議，包括生命週期管理和基礎核心，例如工具、資源、提示和通知。
++ Transport layer: 定義實現客戶端和伺服器之間資料交換的通訊機制，包括傳輸的連線建立、訊息框架和授權。
+    - MCP 支援兩種傳輸機制：Stdio transport、Streamable HTTP transport
     - 在 [Base Protocol - Transports](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports) 中提到可設定為 [Server-Sent Events (SSE)](https://en.wikipedia.org/wiki/Server-sent_events) 來傳送複數訊息。
         + [SSE](https://blackbing.medium.com/%E6%B7%BA%E8%AB%87-server-sent-events-9c81ef21ca8e) 是一個單向通訊的技術，其設計之初是在 WebSocket 未完成前，需提供長連線來高速傳遞內容之用；但在瀏覽器已經能提供 Socket 與 Fetch 運用的現況，SSE 技術並非最優解。
 
@@ -29,16 +30,16 @@ MCP consists of two layers:
 
 [Tools - AI Actions](https://modelcontextprotocol.io/docs/learn/server-concepts#tools-ai-actions)
 
-Tools enable AI models to perform actions through server-implemented functions. Each tool defines a specific operation with typed inputs and outputs. The model requests tool execution based on context.
+工具 ( Tools ) 提供 AI 模型能夠透過伺服器實現的函數執行操作，每個工具都定義了一個根據輸入、輸出型別的操作邏輯，而 AI 模型會根據內容請求工具執行。
 
 ### 資源 ( Resources )
 
 [Resources - Context Data](https://modelcontextprotocol.io/docs/learn/server-concepts#resources-context-data)
 
-Resources provide structured access to information that the host application can retrieve and provide to AI models as context.
+資源 ( Resources ) 提供對資訊的結構化訪問，主機應用程式可以檢索這些資訊並將其作為內容提供給 AI 模型。
 
 ### 提示 ( Prompts )
 
 [Prompts - Interaction Templates](https://modelcontextprotocol.io/docs/learn/server-concepts#prompts-interaction-templates)
 
-Prompts provide reusable templates. They allow MCP server authors to provide parameterized prompts for a domain, or showcase how to best use the MCP server.
+提示 ( Prompts ) 提供可複用的範本，它們允許 MCP 伺服器開發者，可基於其服務的領域知識提供參數化的提示產生。
