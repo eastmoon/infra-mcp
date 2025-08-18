@@ -84,11 +84,13 @@ src\
 
 ### Client
 
-MCP clients are instantiated by host applications to communicate with particular MCP servers. The host application, like Claude.ai or an IDE, manages the overall user experience and coordinates multiple clients. Each client handles one direct communication with one server.
+[MCP Client](https://modelcontextprotocol.io/docs/learn/client-concepts) 為 AI 應用程式對特定 MCP Server 通訊時的程式實體，其中 AI 應用程式負責使用者體驗並協調多個 MCP Client 與不同的 MCP Server 禿訊。
 
-Understanding the distinction is important: the host is the application users interact with, while clients are the protocol-level components that enable server connections.
+結構上，AI 應用程式 ( Host ) 是與用戶互動的軟體，而 MCP Client 是 AI 應用程式實現與 MCP Server 溝通的軟體元件。
 
-[MCP Client](https://modelcontextprotocol.io/docs/learn/server-concepts)
+在 MCP 一文提到的 AI 應用程式為安裝於用戶主機上的軟體，例如 Claude.ai 或 Claude IDE，在實務上則可能是另一個微服務應用程式，根據用戶端 ( 網頁、手機或主機軟體 ) 發送問題請求執行相應的邏輯。
+
+基於 MCP Client‧本專案建立可運行 Client 的容器，請以以下方式進入與操作：
 
 ```
 # 進入 mcp 用戶端服務
@@ -97,6 +99,8 @@ mcp into --tag=client
 # 啟動用戶端
 python ./[client-name].py
 ```
+
+專案提供的範本取自 Python-SDK，考量開發用途僅選用 Streamable HTTP 通訊規則。
 
 ## 文獻
 

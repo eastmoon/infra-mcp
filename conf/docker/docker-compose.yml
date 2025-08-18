@@ -9,11 +9,25 @@ services:
     restart: always
     ports:
       - 8000:80
+    environment:
+      - MCP_SERVER_NAME="MCP Server"
     networks:
       - modelcontextprotocol-net
     volumes:
       - ${SOURCE_DIR}/server:/app
     working_dir: /app
+
+  mcp-client:
+    build:
+      context: mcp
+    container_name: docker-client_${PROJECT_NAME}
+    restart: always
+    networks:
+      - modelcontextprotocol-net
+    volumes:
+      - ${SOURCE_DIR}/client:/app
+    working_dir: /app
+    command: ["sleep", "infinity"]
 
   inspector:
     build:
